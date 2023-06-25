@@ -24,10 +24,8 @@ pipeline {
         stage("Комплияция и тесты") {
             steps {
                 dir("${appDirName}") {
-                    withGradle  {
-                        sh "gradle clean build"
-                        sh "ls -A1 build/libs/"
-                    }
+                    sh "gradle clean build"
+                    sh "ls -A1 build/libs/"
                 }
             }
         }
