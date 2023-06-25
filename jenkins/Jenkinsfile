@@ -24,7 +24,7 @@ pipeline {
         stage("Комплияция и тесты") {
             steps {
                 dir("${appDirName}") {
-                    echo "$GRADLE_HOME"
+                    sh 'echo $GRADLE_HOME'
                 }
             }
         }
