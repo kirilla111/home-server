@@ -30,17 +30,9 @@ pipeline {
                  }
             }
             steps{
-                withGradle {
-                    dir("${appDirName}") {
-                        sh './gradlew clean build'
-                    }
-                }
-            }
-        }
-
-        stage('hello') {
-            steps {
-                sh 'docker -v'
+               dir("${appDirName}") {
+                   sh 'gradle clean build'
+               }
             }
         }
     }
