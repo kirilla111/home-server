@@ -4,9 +4,11 @@ def appDirName = "app"
 
 pipeline {
     agent any
+
     tools {
-            gradle "GRADLE_LATEST"
+        gradle "GRADLE_LATEST"
     }
+
     stages {
         stage('checkout'){
             steps{
@@ -32,8 +34,10 @@ pipeline {
         }
 
         stage("Комплияция и тесты") {
-            dir("${appDirName}") {
-                sh 'gradle clean build'
+            steps{
+                dir("${appDirName}") {
+                    sh 'gradle clean build'
+                }
             }
         }
 
