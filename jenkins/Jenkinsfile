@@ -1,4 +1,4 @@
-GString serviceScmUrl = "https://github.com/kirilla111/home-server.git"
+def serviceScmUrl = "https://github.com/kirilla111/home-server.git"
 def serviceBranchName = "master"
 
 pipeline {
