@@ -26,17 +26,15 @@ pipeline {
 
        
         stage('Gradle') {
-                steps {
-                    sh 'gradle --version'
-                }
+            steps {
+                sh 'gradle --version'
+            }
         }
 
         stage("Комплияция и тесты") {
-            stage('Gradle') {
-                dir("${appDirName}") {
-                    sh 'gradle clean build'
-                }
-           }
+            dir("${appDirName}") {
+                sh 'gradle clean build'
+            }
         }
 
         stage('hello') {
