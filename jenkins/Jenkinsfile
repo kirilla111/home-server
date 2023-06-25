@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        stage("Комплияция и тесты") {
+        stage("Gradle") {
             steps{
                 dir("${appDirName}") {
                     sh './gradlew clean build'
