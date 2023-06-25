@@ -23,8 +23,10 @@ pipeline {
 
         stage("Комплияция и тесты") {
             steps {
-                dir("${appDirName}") {
-                    sh 'echo $GRADLE_HOME'
+                withGradle {
+                    dir("${appDirName}") {
+                        sh './gradlew build'
+                    }
                 }
             }
         }
