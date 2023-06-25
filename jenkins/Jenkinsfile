@@ -25,7 +25,7 @@ pipeline {
             steps {
                 withGradle {
                     dir("${appDirName}") {
-                        sh './gradlew build'
+                        sh 'gradle build'
                     }
                 }
             }
