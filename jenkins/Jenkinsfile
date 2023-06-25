@@ -24,12 +24,11 @@ pipeline {
             }
         }
 
-        stages {
-            stage('Gradle') {
+       
+        stage('Gradle') {
                 steps {
                     sh 'gradle --version'
                 }
-            }
         }
 
         stage("Комплияция и тесты") {
