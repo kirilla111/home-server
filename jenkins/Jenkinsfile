@@ -22,7 +22,13 @@ pipeline {
             }
         }
 
-        stage("Gradle") {
+        stage("Сборка и тестирование") {
+            agent {
+                 docker {
+                    image 'gradle:8.1.1-jdk17'
+                    reuseNode true
+                 }
+            }
             steps{
                 withGradle {
                     dir("${appDirName}") {
