@@ -21,14 +21,10 @@ pipeline {
             }
         }
 
-        stage("Комплияция и тесты") {
-            steps {
-                withGradle {
-                    dir("${appDirName}") {
-                        sh 'gradle build'
-                    }
-                }
-            }
+        node {
+          withGradle {
+            sh './gradlew build'
+          }
         }
 
         stage('hello') {
