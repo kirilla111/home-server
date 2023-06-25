@@ -8,7 +8,6 @@ pipeline {
         stage('checkout'){
             steps{
                 echo "checkout master branch ------------------>"
-                 dir("${appDirName}") {
                      checkout scm: [
                                     $class           : 'GitSCM',
                                     branches         : [[name: "${serviceBranchName}"]],
@@ -19,7 +18,6 @@ pipeline {
                                             ]
                                     ]
                             ]
-                }
             }
         }
 
