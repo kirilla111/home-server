@@ -1,5 +1,6 @@
 def serviceScmUrl = "https://github.com/kirilla111/home-server.git"
 def serviceBranchName = "master"
+def appDirName = "app"
 
 pipeline {
     agent any
@@ -7,16 +8,27 @@ pipeline {
         stage('checkout'){
             steps{
                 echo "checkout master branch ------------------>"
-                 checkout scm: [
-                                $class           : 'GitSCM',
-                                branches         : [[name: "${serviceBranchName}"]],
-                                userRemoteConfigs: [
-                                        [
-                                                credentialsId: 'ed596ff2-951e-4fad-9018-20741c763036',
-                                                url          : "${serviceScmUrl}"
-                                        ]
-                                ]
-                        ]
+                 dir("${appDirName}") {
+                     checkout scm: [
+                                    $class           : 'GitSCM',
+                                    branches         : [[name: "${serviceBranchName}"]],
+                                    userRemoteConfigs: [
+                                            [
+                                                    credentialsId: 'ed596ff2-951e-4fad-9018-20741c763036',
+                                                    url          : "${serviceScmUrl}"
+                                            ]
+                                    ]
+                            ]
+                }
+            }
+        }
+
+        stage("Комплияция и тесты") {
+            steps {
+                dir("${appDirName}") {
+                    sh "gradle clean build"
+                    sh "ls -A1 build/libs/"
+                }
             }
         }
 
