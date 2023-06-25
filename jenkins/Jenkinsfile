@@ -1,9 +1,22 @@
+GString serviceScmUrl = "https://github.com/kirilla111/home-server.git"
+def serviceBranchName = "master"
+
 pipeline {
     agent any
     stages {
         stage('checkout'){
             steps{
-                checkout scm
+                echo "checkout master branch ------------------>"
+                 checkout scm: [
+                                $class           : 'GitSCM',
+                                branches         : [[name: "${serviceBranchName}"]],
+                                userRemoteConfigs: [
+                                        [
+                                                credentialsId: 'ed596ff2-951e-4fad-9018-20741c763036',
+                                                url          : "${serviceScmUrl}"
+                                        ]
+                                ]
+                        ]
             }
         }
 
