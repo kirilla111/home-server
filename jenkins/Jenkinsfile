@@ -24,8 +24,10 @@ pipeline {
 
         stage("Gradle") {
             steps{
-                dir("${appDirName}") {
-                    sh './gradlew clean build'
+                withGradle {
+                    dir("${appDirName}") {
+                        sh './gradlew clean build'
+                    }
                 }
             }
         }
