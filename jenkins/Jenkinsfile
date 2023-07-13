@@ -25,10 +25,20 @@ pipeline {
             }
         }
 
-        stage("Сборка Docker-Образа") {
+        stage("Сборка и тестирование") {
               steps {
                 script {
                     sh 'ls'
+                    dir("app/app") {
+                        sh ".\gradlew clean build"
+                    }
+                }
+            }
+        }
+
+        stage("Сборка Docker-Образа") {
+              steps {
+                script {
                     dir("app/app") {
                         sh 'ls'
                         sh "docker build -t ${dockerImageName} ."
