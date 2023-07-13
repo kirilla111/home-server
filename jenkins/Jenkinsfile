@@ -42,6 +42,7 @@ pipeline {
             agent any
             steps {
                 echo "Building docker image with name ${dockerImageName}"
+                sh "ls"
                 dir("${appDirName}") {
                     sh "docker build -t ${dockerImageName} ."
                 }
