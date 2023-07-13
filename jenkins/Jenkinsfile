@@ -40,13 +40,14 @@ pipeline {
 
         stage("Сборка Docker-Образа") {
             agent any
-            steps {
-                echo "Building docker image with name ${dockerImageName}"
-                dir("${appDirName}") {
-                    sh "ls"
+              steps {
+                script {
+                    sh "mv ${appDirName}/Dockerfile ${serviceDirectoryName}/Dockerfile"
                 }
-                dir("${appDirName}") {
-                    sh "docker build -t ${dockerImageName} ."
+                script {
+                    dir("${appDirName}") {
+                        sh "docker build ${dockerImageName} ."
+                    }
                 }
             }
         }
