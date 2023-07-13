@@ -26,7 +26,6 @@ pipeline {
         }
 
         stage("Сборка Docker-Образа") {
-            agent any
               steps {
                 script {
                     sh 'ls'
@@ -39,7 +38,6 @@ pipeline {
         }
 
         stage("Публикация Docker-Образа") {
-            agent any
             steps {
                 echo "Building docker image with name ${dockerImageName}"
                 dir("${appDirName}") {
