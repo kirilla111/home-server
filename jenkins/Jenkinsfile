@@ -39,7 +39,7 @@ pipeline {
         }
 
         stage("Сборка Docker-Образа") {
-            agent docker
+            agent { docker }
             steps {
                 echo "Building docker image with name ${dockerImageName}"
                 dir("${appDirName}") {
@@ -49,7 +49,7 @@ pipeline {
         }
 
         stage("Публикация Docker-Образа") {
-            agent docker
+            agent { docker }
             steps {
                 echo "Building docker image with name ${dockerImageName}"
                 dir("${appDirName}") {
