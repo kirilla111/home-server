@@ -2,7 +2,7 @@ def serviceScmUrl = "https://github.com/kirilla111/home-server.git"
 def serviceBranchName = "master"
 def appDirName = "app"
 def buildNumber = currentBuild.number
-def dockerImageName = "${appDirName}-${serviceBranchName}"
+def dockerImageName = "${appDirName}-${buildNumber}"
 
 pipeline {
     agent any
