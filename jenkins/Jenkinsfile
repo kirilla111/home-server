@@ -39,12 +39,22 @@ pipeline {
         }
 
         stage("Сборка Docker-Образа") {
-            dockerImage = docker.build("${dockerImageName}")
+            agent any
+            steps {
+                echo "Building docker image with name ${dockerImageName}"
+                dir("${appDirName}") {
+                    sh "docker build -t ${dockerImageName}"
+                }
+            }
         }
 
         stage("Публикация Docker-Образа") {
-            withDockerRegistry([credentialsId: "ed596ff2-951e-4fad-9018-20741c763036", url: "http://localhost:5000"]) {
-                dockerImage.push()
+            agent any
+            steps {
+                echo "Building docker image with name ${dockerImageName}"
+                dir("${appDirName}") {
+                    sh "docker push -t ${dockerImageName}"
+                }
             }
         }
     }
