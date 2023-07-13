@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh 'ls'
                     dir("app/app") {
-                        sh ".\gradlew clean build"
+                        sh "./gradlew clean build"
                     }
                 }
             }
