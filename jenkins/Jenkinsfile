@@ -30,6 +30,9 @@ pipeline {
                 script {
                     sh 'ls'
                     dir("app/app") {
+
+                    // Нужен билд, нет прав на выполнение :(
+
                         sh "./gradlew clean build"
                     }
                 }
