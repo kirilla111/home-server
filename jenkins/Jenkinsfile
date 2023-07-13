@@ -38,19 +38,18 @@ pipeline {
             }
         }
 
-        stage("Сборка Docker-Образа и публикация") {
-            agent {
-                docker {
-                    image 'gradle:8.1.1-jdk17'
-                    reuseNode true
-                }
-            }
+        stage("Сборка Docker-Образа") {
+            agent docker
             steps {
                 echo "Building docker image with name ${dockerImageName}"
                 dir("${appDirName}") {
                     sh "docker build -t ${dockerImageName}"
                 }
             }
+        }
+
+        stage("Публикация Docker-Образа") {
+            agent docker
             steps {
                 echo "Building docker image with name ${dockerImageName}"
                 dir("${appDirName}") {
