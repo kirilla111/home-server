@@ -29,7 +29,9 @@ pipeline {
             agent any
               steps {
                 script {
+                    sh 'ls'
                     dir("app/app") {
+                        sh 'ls'
                         sh "docker build -t ${dockerImageName} ."
                     }
                 }
