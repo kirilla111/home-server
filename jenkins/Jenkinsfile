@@ -29,8 +29,8 @@ pipeline {
             agent any
               steps {
                 script {
-                    dir("${appDirName}") {
-                        sh "docker build ${dockerImageName} ."
+                    dir("app/app") {
+                        sh "docker build -t ${dockerImageName} ."
                     }
                 }
             }
