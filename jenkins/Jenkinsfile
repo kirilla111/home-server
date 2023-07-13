@@ -43,7 +43,7 @@ pipeline {
             steps {
                 echo "Building docker image with name ${dockerImageName}"
                 dir("${appDirName}") {
-                    sh "docker build -t ${dockerImageName}"
+                    sh "docker build -t ${dockerImageName} ."
                 }
             }
         }
