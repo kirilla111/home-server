@@ -10,17 +10,18 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                echo "checkout master branch ------------------>"
-                checkout scm: [
-                        $class           : 'GitSCM',
-                        branches         : [[name: "${serviceBranchName}"]],
-                        userRemoteConfigs: [
-                                [
-                                        credentialsId: 'ed596ff2-951e-4fad-9018-20741c763036',
-                                        url          : "${serviceScmUrl}"
-                                ]
-                        ]
-                ]
+                dir("${appDirName}") {
+                    checkout scm: [
+                            $class           : 'GitSCM',
+                            branches         : [[name: "${serviceBranchName}"]],
+                            userRemoteConfigs: [
+                                    [
+                                            credentialsId: 'ed596ff2-951e-4fad-9018-20741c763036',
+                                            url          : "${serviceScmUrl}"
+                                    ]
+                            ]
+                    ]
+                }
             }
         }
 
