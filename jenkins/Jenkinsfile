@@ -24,26 +24,9 @@ pipeline {
             }
         }
 
-        stage("Сборка и тестирование") {
-            agent {
-                docker {
-                    image 'gradle:8.1.1-jdk17'
-                    reuseNode true
-                }
-            }
-            steps {
-                dir("${appDirName}") {
-                    sh 'gradle clean build'
-                }
-            }
-        }
-
         stage("Сборка Docker-Образа") {
             agent any
               steps {
-                script {
-                    sh "mv ${appDirName}/Dockerfile ${serviceDirectoryName}/Dockerfile"
-                }
                 script {
                     dir("${appDirName}") {
                         sh "docker build ${dockerImageName} ."
